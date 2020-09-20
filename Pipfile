@@ -6,6 +6,10 @@ verify_ssl = true
 [requires]
 python_full_version = "3.8.5"
 
+[scripts]
+manage = "python src/manage.py"
+serve = "python src/manage.py runserver 8099"
+
 [dev-packages]
 coverage = "*"
 flake8 = "*"
@@ -36,12 +40,6 @@ html5lib = "1.0.1"
 Pillow = "*"
 pytz = "*"
 six = "*"
-
-[scripts]
-migrate = "python src/manage.py migrate"
-runserver = "python src/manage.py runserver 8099"
-createsuperuser = "python src/manage.py createsuperuser"
-
 
 # Original freeze after `djangocms install`
 # on 2020-09-20 ___________________________

@@ -1,6 +1,7 @@
-[settings]
 # Django settings
 DJANGO_SETTINGS_MODULE=hpk.settings.local
+SECRET_KEY=kjoxwp^-^imh42)0u(1uyy_8z^tin*+ij&9nz+q8i)(t3)2+9q
+
 # Database
 POSTGRES_USERNAME=postgres
 POSTGRES_PASSWORD=
