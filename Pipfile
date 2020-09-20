@@ -13,6 +13,8 @@ ipython = "*"
 ipdb = "*"
 
 [packages]
+django-decouple = "*"
+
 # Base Django CMS requirements
 Django = "<3.1"
 django-cms = "3.7.4"
