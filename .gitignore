@@ -1,6 +1,6 @@
 # dependencies
-*/node_modules
-*/.pnp
+node_modules
+/.pnp
 .pnp.js
 .env
 
@@ -10,6 +10,7 @@
 # production
 */build
 var/pgdumps/*
+static/*
 
 # misc
 .DS_Store

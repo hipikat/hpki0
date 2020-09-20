@@ -7,8 +7,8 @@ verify_ssl = true
 python_full_version = "3.8.5"
 
 [scripts]
-manage = "python djcms/manage.py"
-serve = "python djcms/manage.py runserver 8099"
+manage = "python src/manage.py"
+serve = "python src/manage.py runserver 8099"
 
 [dev-packages]
 coverage = "*"
