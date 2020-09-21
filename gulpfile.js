@@ -1,4 +1,6 @@
-const throwError = true;
+
+const debug = true;
+const base_scss = 'styles';
 
 var gulp          = require('gulp');
 var browserSync   = require('browser-sync').create();
@@ -9,16 +11,18 @@ var $             = require('gulp-load-plugins')({
 
 var gulpSassError = require('gulp-sass-error');
 
-var src = './src/';
+var src = {
+    scss: './src/scss/'
+};
 var dest = './static/';
 
-var sassPaths = [
-  'node_modules/foundation-sites/scss',
-  'node_modules/motion-ui/src'
-];
+var sassPaths = {
+  'node_modules/foundation-sites/scss': 'foundation_scss',
+  'node_modules/motion-ui/src': 'motion-ui_scss'
+};
 
 var sassOptions = {
-  includePaths: sassPaths,
+  includePaths: Object.keys(sassPaths),
   indentWidth: 4,
   outputStyle: 'expanded',
   sourceComments: true
@@ -35,13 +39,13 @@ var cleanCSSOptions = {
 
 // Compile CSS from Sass files
 function sass() {
-  return gulp.src(src + 'scss/styles.scss')
+  return gulp.src(src.scss + base_scss + '.scss')
     // Start recroding sourcemaps for debugging
     .pipe($.sourcemaps.init())
       .pipe($.sourcemaps.identityMap())
       // Compile Sass
       .pipe($.sass(sassOptions))
-        .on('error', gulpSassError.gulpSassError(throwError))
+        .on('error', gulpSassError.gulpSassError(debug ? true : false))
       //Autoprefixer adds '-moz-/-webkit-'-style prefixes
       .pipe($.autoprefixer())
     // Write sourcemaps
@@ -49,7 +53,7 @@ function sass() {
     // And write non-minified CSS
     .pipe(gulp.dest(dest + 'css/'))
     // Write minified CSS
-    .pipe($.rename('styles.css.min'))
+    .pipe($.rename(base_scss + '.css.min'))
     .pipe($.cleanCss(cleanCSSOptions))
     .pipe(gulp.dest(dest + 'css/'));
 }
@@ -68,11 +72,14 @@ function serve() {
     server: "./static/"
   });
 
-  gulp.watch("src/scss/*.scss", sass);
-  gulp.watch("*.html").on('change', browserSync.reload);
+  gulp.watch(src.scss + "**/*.scss", sass);
+  //gulp.watch("./src/*.html").on('change', browserSync.reload);
 }
 
 gulp.task('scripts', scripts);
 gulp.task('sass', sass);
+gulp.task('watch', function () {
+    gulp.watch(src.scss + "*.scss", ['sass']);
+});
 gulp.task('serve', gulp.series('sass', serve));
 gulp.task('default', gulp.series('sass', serve));
