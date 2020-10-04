@@ -24,10 +24,25 @@ module.exports = env => {
     (min ? '' : 'no-') + 'minify)...');
 
   // Entry points go here
-  entry_points['loader' + suffix] = path.join(__dirname, '/src/js/loader.js');
-  entry_points['main' + suffix] = path.join(__dirname, '/src/js/main.js');
+//  entry_points['common' + suffix] = [
+//    //'jquery',
+//    './src/js/foundation_components.js'
+//  ];
+  //entry_points['loader' + suffix] = {
+  //  import: path.join(__dirname, '/src/js/loader.js'),
+  //  dependOn: 'common' + suffix,
+  //}
+  entry_points['main' + suffix] = {
+    "import": path.join(__dirname, '/src/js/main.js'),
+    filename: 'js/main' + suffix + '.js',
+    //dependOn: 'common' + suffix,
+  };
 
-  var optimize_options = { minimize: (min ? true : false) };
+
+  var optimize_options = {
+    minimize: (min ? true : false),
+    chunkIds: 'named',
+  };
   if (min) {
     optimize_options['minimizer'] = [
       new TerserPlugin({
@@ -53,16 +68,27 @@ module.exports = env => {
     ]
   }
 
+  console.log('ENTRY POINTS:');
+  console.log(entry_points);
+
+  // Module export
   return {
     target: "web",
     mode: (mode == "production" ? "production" : "development"),
+    //externals: /^(jquery|\$)$/i,
+    externals: {
+      jquery: 'jQuery',
+    },
     entry: entry_points,
     output: {
       path: path.resolve(__dirname, 'static'),
       filename: 'js/[name].js',
-      chunkFilename: 'js/[name].chunk' + suffix + '.js',
+      chunkFilename: 'js/[id].chunk' + suffix + '.js',
     },
     optimization: optimize_options,
+    performance: {
+      hints: false,
+    },
     devServer: {
       port: (mode == "production" ? dev_prod_port : dev_debug_port),
       contentBase: path.join(__dirname, '/static'),
@@ -72,10 +98,10 @@ module.exports = env => {
     },
     devtool: false,
     plugins: [
-      new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery"
-      }),
+      //new webpack.ProvidePlugin({
+      //  $: "jquery",
+      //  jQuery: "jquery"
+      //}),
       new webpack.SourceMapDevToolPlugin({
         filename: 'maps/[file].map',
         sourceRoot: 'lib',
@@ -87,6 +113,7 @@ module.exports = env => {
         template: 'src/templates/gallery.html',
         filename: 'index' + (mode != "production" ? '-debug' : '') + '.html',
         minify: (min ? true : false),
+        //scriptLoading: 'defer',
       }),
       new HtmlWebpackPlugin({
         template: 'node_modules/foundation-sites/customizer/index.html',
@@ -100,14 +127,15 @@ module.exports = env => {
     ],
     module: {
       rules: [
+        // JS
         { test: /.js$/,
-          exclude: /(node_modules)\|main.js/,
+          exclude: /(node_modules)/,
           use: {
             loader: 'babel-loader',
             options: {
               presets: [
                 ["@babel/preset-env",
-                  {"targets": "defaults" }
+                  {"targets": "defaults"}
                   //{"targets": "since 2015-03-10" }
                   //{ "useBuiltIns": "entry" }
                 ]
@@ -115,15 +143,28 @@ module.exports = env => {
             }
           }
         },
-        { test: /loader.js$/,
-          exclude: /(node_modules)/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env']
-            }
-          }
-        },
+        //{ test: /.js$/,
+        //  exclude: /(node_modules)/,
+        //  use: {
+        //    loader: 'babel-loader',
+        //    options: {
+        //      presets: ['@babel/preset-env'],
+        //      plugins: [
+        //        ['@babel/plugin-transform-runtime', {
+        //          //useESModules: true,
+        //          //regenerator: true,
+        //          //helpers: true,
+        //          //corejs: false,
+        //          //"absoluteRuntime": false,
+        //          //"regenerator": true,
+        //          //"useESModules": false,
+        //          //"version": "7.0.0-beta.0"
+        //        }],
+        //      ],
+        //    }
+        //  }
+        //},
+        // Sass
         { test: /\.s[ac]ss$/,
           use: [
             { loader: MiniCssExtractPlugin.loader },

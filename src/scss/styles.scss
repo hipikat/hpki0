@@ -2,8 +2,8 @@
 
 @import 'defaults';
 @import 'settings';
-@import 'foundation';
-@import 'motion-ui';
+@import 'lib/foundation/foundation';
+@import 'lib/motion-ui/motion-ui';
 
 // Global styles
 @include foundation-global-styles;
@@ -11,7 +11,7 @@
 @include foundation-typography;
 
 // Grids (choose one)
-@include foundation-xy-grid-classes;
+//@include foundation-xy-grid-classes;
 // @include foundation-grid;
 // @include foundation-flex-grid;
 

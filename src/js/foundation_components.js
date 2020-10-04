@@ -30,8 +30,8 @@ export { CoreUtils };
 //export { Sticky }                   from './lib/foundation/foundation.sticky';
 //export { Tabs }                     from './lib/foundation/foundation.tabs';
 //export { Toggler }                  from './lib/foundation/foundation.toggler';
-//export { Tooltip }                  from './lib/foundation/foundation.tooltip';
+export { Tooltip }                  from './lib/foundation/foundation.tooltip';
 //export { ResponsiveAccordionTabs }  from './lib/foundation/foundation.responsiveAccordionTabs';
 
-export { Foundation }               from './lib/foundation/entries/foundation';
-export { default }                  from './lib/foundation/entries/foundation';
+//export { Foundation }               from './lib/foundation/entries/foundation';
+//export { default }                  from './lib/foundation/entries/foundation';
