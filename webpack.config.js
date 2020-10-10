@@ -11,7 +11,7 @@ const dev_debug_port = 9000,
 
 module.exports = env => {
 
-  // Use e.g. `webpack --env (debug|prod)[,watch][,[no]minify][,(clean|dirty)]`,
+  // Use e.g. `webpack --env (debug|prod)[,[no]minify][,(clean|dirty)]`,
   // or everything will just default to clean, minified production mode.
   const mode = /\bdebug\b/.test(env) ? "debug" : "production",
     min = (mode == "production" || /\bminify\b/.test(env)) ? (/\bnominify\b/.test(env) ? false : true) : false,
@@ -24,10 +24,10 @@ module.exports = env => {
     (min ? '' : 'no-') + 'minify)...');
 
   // Entry points go here
-//  entry_points['common' + suffix] = [
-//    //'jquery',
-//    './src/js/foundation_components.js'
-//  ];
+  entry_points['base' + suffix] = [
+  //  //'jquery',
+    './src/js/base.js'
+  ];
   //entry_points['loader' + suffix] = {
   //  import: path.join(__dirname, '/src/js/loader.js'),
   //  dependOn: 'common' + suffix,
@@ -35,10 +35,10 @@ module.exports = env => {
   entry_points['main' + suffix] = {
     "import": path.join(__dirname, '/src/js/main.js'),
     filename: 'js/main' + suffix + '.js',
-    //dependOn: 'common' + suffix,
+    dependOn: 'base' + suffix,
   };
 
-
+  // Value for 'optimization'
   var optimize_options = {
     minimize: (min ? true : false),
     chunkIds: 'named',
@@ -54,13 +54,16 @@ module.exports = env => {
           },
         },
         terserOptions: {
-          ecma: 2016,
+          ecma: 5,
           compress: min ? {
             drop_console: clean ? true : false,
           } : false,
           format: {
-            semicolons: true,
+            semicolons: false,
             max_line_len: 110,
+          },
+          output: {
+            comments: (mode == "production" && min) ? false : true,
           },
           mangle: (min ? true : false),
         },
@@ -68,14 +71,10 @@ module.exports = env => {
     ]
   }
 
-  console.log('ENTRY POINTS:');
-  console.log(entry_points);
-
   // Module export
   return {
     target: "web",
     mode: (mode == "production" ? "production" : "development"),
-    //externals: /^(jquery|\$)$/i,
     externals: {
       jquery: 'jQuery',
     },
@@ -128,7 +127,7 @@ module.exports = env => {
     module: {
       rules: [
         // JS
-        { test: /.js$/,
+        { test: /.js[x]$/,
           exclude: /(node_modules)/,
           use: {
             loader: 'babel-loader',
@@ -138,7 +137,8 @@ module.exports = env => {
                   {"targets": "defaults"}
                   //{"targets": "since 2015-03-10" }
                   //{ "useBuiltIns": "entry" }
-                ]
+                ],
+                "@babel/preset-react",
               ]
             }
           }
@@ -168,6 +168,7 @@ module.exports = env => {
         { test: /\.s[ac]ss$/,
           use: [
             { loader: MiniCssExtractPlugin.loader },
+            //{ loader: 'style-loader', options: {} },
             { loader: 'css-loader',
               options: {
                 sourceMap: true,
@@ -181,7 +182,7 @@ module.exports = env => {
                     {'postcss-import': {
                       root: 'lib',
                     }},
-                    'autoprefixer',
+                    {'autoprefixer': {}},
                     {'postcss-preset-env': {
                       stage: 1,
                       browsers: 'last 2 versions',

@@ -1,41 +1,32 @@
 // Main JS entry-point for pages on hpk.io
 
+// Time-keeping, global logging object
+window.global_timer = {
+  performance_origin: performance.now(),
+  log: function (message) {
+    console.log("[AT " + (performance.now() - global_timer.performance_origin).toFixed(4) +
+                "ms]: " + message);
+  },
+}
+global_timer.log("Initialised global_timer at " + global_timer.performance_origin);
+
 import '../scss/styles.scss';
-
-//import(
-  /* webpackPrefetch: true */
-  /* webpackChunkName: "jquery" */
-//  'jQuery');
-//import(
-  /* webpackPrefetch: true */
-  /* webpackChunkName: "foundation" */
-//  './foundation_components.js');
-
 import $ from 'jquery';
+import { Foundation } from './base.js';
 
-export { Foundation as Core }       from './lib/foundation/foundation.core';
-import * as CoreUtils               from './lib/foundation/foundation.core.utils';
-export { CoreUtils };
-
-export { Tooltip }                  from './lib/foundation/foundation.tooltip';
-
-
-
-
-//window.$ = $;
-//window.jQuery = jQuery;
-
-//import('./foundation_components.js');
-console.log('--- imported components');
-
-
-window.$ = $;
 Foundation.addToJquery($);
-//var $ = jQuery.$;
+global_timer.log('Finished importing components in main.js');
 
+// Initialise 
 $(document).ready(function () {
+    //var $top_menu;
+
+    //Foundation.addToJquery($);
     $(document).foundation();
-    console.log('--- initialised .foundation()');
+
+    //$top_menu = new DropdownMenu($('#top-nav'));
+
+    global_timer.log("Foundation initialised on the DOM");
 });
 
-console.log('--- finished loading main.js');
+global_timer.log("Finished loading main.js");
