@@ -91,7 +91,7 @@ $global-lineheight: 1.5;
 //$global-weight-normal: normal;
 //$global-weight-bold: bold;
 //$global-radius: 0;
-//$global-menu-padding: 0.7rem 1rem;
+$global-menu-padding: 0.9rem 1rem;
 //$global-menu-nested-margin: 1rem;
 //$global-text-direction: ltr;
 //$global-flexbox: true;
@@ -139,7 +139,7 @@ $global-lineheight: 1.5;
 // 4. Base Typography
 // ------------------
 
-//$header-font-family: $body-font-family;
+$header-font-family: 'Zilla Slab', Helvetica, Roboto, Arial, sans-serif;
 //$header-font-weight: $global-weight-normal;
 //$header-font-style: normal;
 //$font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
@@ -885,11 +885,11 @@ $global-lineheight: 1.5;
 //$xy-grid: true;
 //$grid-container: $global-width;
 //$grid-columns: 12;
-//$grid-margin-gutters: (
-//  small: 20px,
-//  medium: 30px
-//);
-//$grid-padding-gutters: $grid-margin-gutters;
+$grid-margin-gutters: (
+  small: 2.6rem,
+  medium: 3.2rem,
+);
+$grid-padding-gutters: $grid-margin-gutters;
 //$grid-container-padding: $grid-padding-gutters;
 //$grid-container-max: $global-width;
 //$xy-block-grid-max: 8;

@@ -1,0 +1,148 @@
+
+@charset 'utf-8'
+
+@use 'foundation' as fndtn
+
+
+$header_height: 3rem
+
+// Canonical pride flag colours
+$trans_pink: #f7a8b8
+$trans_blue: #55cdfc
+$pride_red: #ff0018
+$pride_orange: #ffa52c
+$pride_yellow: #ffff41
+$pride_green: #008018
+$pride_blue: #0000f9
+$pride_purple: #86007d
+
+
+html
+  height: 100%
+
+body
+  //border: 1px solid orange
+  background: white
+
+
+div#body-lining
+  text-align: left
+  min-height: 100vh
+
+
+div#site-title-cell
+  // Site title div
+  > div
+    //border: 1px solid green
+    display: inline-block
+    text-align: right
+    margin: 0.6667rem 0 0
+    h1
+      font-size: 1rem
+      margin: 0
+      padding: 0
+    h1 > span
+      color: scale-color($trans_pink, $lightness: 99%)
+      background-color: black
+      border: solid black
+      border-width: 1px 0.9rem
+      display: inline-block
+      line-height: 1
+      font-size: 2rem
+      &:nth-child(1)
+        font-weight: bold
+        font-size: 4rem
+
+//.grid-x
+//  border: 1px solid pink
+
+div#top-stuff
+  //border: 1px solid purple
+  font-size: fndtn.$small-font-size
+
+  ul#top-nav
+    display: none
+
+  div
+    display: block
+    width: 100%
+
+#page-header
+  //display: none
+  //position: absolute
+  //left: 0
+  //right: 0
+  top: 0
+  //height: $header_height
+  //background: linear-gradient(to bottom, fade-out(lighten($trans_blue, 24%), .2), 99%, fade-out(lighten($trans_blue, 24%), .2))
+  //background: linear-gradient(to bottom, fade-out(darken(saturate($trans_blue, 50%), 45%), .2), 99%, fade-out(darken($trans_blue, 65%), .2))
+  //background: fade-out($trans_blue, .75)
+  //border-bottom: 1px solid fade-out(darken($trans_blue, 50%), .8)
+  //display: none
+  //height: $header_height
+  //:first-child p
+  //  //line-height: $header_height
+  //  padding: foundation.$global-menu-padding
+  //  margin-bottom: 0
+
+#title-container 
+  #page-section,
+  #page-title
+    border-bottom: 1px solid darken($trans_blue, 20%)
+  #page-section p
+    margin-bottom: 0
+    font-family: fndtn.$header-font-family
+    font-weight: bold
+    font-size: 120%
+  #page-title h1
+    margin-bottom: 0
+
+#page-title h1
+  line-height: 0.98
+
+#ada-portrait
+  width: 11rem
+
+#body-lining > header > .grid-container > .grid-x > :nth-child(1),
+#body-lining > main > .grid-container > .grid-x > :nth-child(1)
+  background: linear-gradient(to right, scale-color($trans_pink, $lightness: 99%), 75%, scale-color($trans_pink, $lightness: 98%), 99%, desaturate(darken(scale-color($trans_pink, $lightness: 70%), 13%), 50%))
+
+//#body-lining > header > .grid-container > .grid-x > :nth-child(2),
+//#body-lining > main > .grid-container > .grid-x > :nth-child(2)
+//  padding: 0 1.6rem
+
+//#title-container
+//  #title-section
+//    border-bottom: 1px solid $trans_blue
+
+#body-container
+  min-height: 100vh
+  .grid-x
+    padding-bottom: 4px
+    min-height: 100vh
+    //:nth-child(1)
+      //background-color: $trans_pink
+      //background: linear-gradient(to right, scale-color($trans_pink, $lightness: 88%), 75%, scale-color($trans_pink, $lightness: 78%), 99%, desaturate(darken(scale-color($trans_pink, $lightness: 50%), 13%), 50%))
+      //background: linear-gradient(to right, scale-color($trans_pink, $lightness: 99%), 75%, scale-color($trans_pink, $lightness: 98%), 99%, desaturate(darken(scale-color($trans_pink, $lightness: 70%), 13%), 50%))
+    //.cell
+    //  padding-top: $header_height
+
+#pride-stripe
+  position: fixed
+  bottom: 0
+  width: 100%
+  .cell
+    height: 4px
+  .grid-x
+    :nth-child(1)
+      background-color: $pride_red
+    :nth-child(2)
+      background-color: $pride_orange
+    :nth-child(3)
+      background-color: $pride_yellow
+    :nth-child(4)
+      background-color: $pride_green
+    :nth-child(5)
+      background-color: $pride_blue
+    :nth-child(6)
+      background-color: $pride_purple

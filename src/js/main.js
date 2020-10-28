@@ -10,7 +10,8 @@ window.global_timer = {
 }
 global_timer.log("Initialised global_timer at " + global_timer.performance_origin);
 
-import '../scss/styles.scss';
+import '../scss/styles.sass';
+
 import $ from 'jquery';
 import { Foundation } from './base.js';
 

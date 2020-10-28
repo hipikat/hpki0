@@ -13,12 +13,14 @@ module.exports = env => {
 
   // Use e.g. `webpack --env (debug|prod)[,[no]minify][,(clean|dirty)]`,
   // or everything will just default to clean, minified production mode.
-  const mode = /\bdebug\b/.test(env) ? "debug" : "production",
-    min = (mode == "production" || /\bminify\b/.test(env)) ? (/\bnominify\b/.test(env) ? false : true) : false,
-    clean = (mode == "production" || /\bclean\b/.test(env)) ? (/\bdirty\b/.test(env) ? false : true) : false,
+  const mode = env.debug ? "debug" : "production",
+    min = (mode == "production" || env.minify) ? (env.nominify ? false : true) : false,
+    clean = (mode == "production" || env.clean) ? (env.dirty ? false : true) : false,
     suffix = min ? '.min' : '',
     entry_points = {};
 
+
+  console.log('env is ', env);
   console.log("Building in " + mode + " mode (" +
     (clean ? '' : 'no-') + 'clean, ' +
     (min ? '' : 'no-') + 'minify)...');
