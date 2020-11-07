@@ -4,11 +4,12 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [requires]
-python_full_version = "3.8.5"
+python_full_version = "3.9.0"
 
 [scripts]
 manage = "python src/manage.py"
 server = "python src/manage.py runserver 8099"
+lock = ""
 
 [dev-packages]
 coverage = "*"
