@@ -8,7 +8,9 @@ python_full_version = "3.9.0"
 
 [scripts]
 manage = "python src/manage.py"
+python = "python"
 server = "python src/manage.py runserver 8099"
+dumpdata = "python src/manage.py dumpdata --format yaml --indent 2 --natural-primary --natural-foreign --exclude sessions --exclude auth.user --output ./fixtures/latest.yaml"
 
 [dev-packages]
 coverage = "*"
@@ -16,11 +18,13 @@ flake8 = "*"
 ipython = "*"
 ipdb = "*"
 yolk3k = "*"
+django = "*"
+pyyaml = "*"
 
 [packages]
 django-decouple = "*"
 # Base Django CMS requirements
-Django = "<3.1"
+Django = "<=3.1.3"
 django-cms = "3.7.4"
 django-filer = ">=1.3"
 django-treebeard = "<5.0"
