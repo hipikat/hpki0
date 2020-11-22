@@ -36,6 +36,13 @@ p
   @include fndtn.breakpoint(small only)
     font-size: 90%
 
+.ISO-8601
+  color: fndtn.$medium-gray
+  .date, .time
+    color: fndtn.$body-font-color
+  .a_t, .zone
+    padding: 0 0.1rem
+
 div#body-lining
   text-align: left
   min-height: 100vh
@@ -84,15 +91,27 @@ div#site-title-cell
 //  border: 1px solid pink
 
 div#top-stuff
-  //border: 1px solid purple
   font-size: fndtn.$small-font-size
-
-  ul#top-nav
+  margin-top: auto
+  .time-ago
     display: none
+  @include fndtn.breakpoint(medium)
+    .time-ago
+      display: inline
+  > .cell
+    padding-top: 0.2rem
+    
 
-  div
-    display: block
-    width: 100%
+  //border: 1px solid red
+  //div
+  //  border: 1px solid blue
+
+  //ul#top-nav
+  //  display: none
+
+  //div
+  //  display: block
+  //  width: 100%
 
 #page-header
   //display: none
