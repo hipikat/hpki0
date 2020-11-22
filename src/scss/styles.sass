@@ -2,6 +2,14 @@
 @charset 'utf-8'
 
 @use 'foundation' as fndtn
+//@import 'lib/foundation/util/mixins'
+@import 'util/mixins'
+
+
+$fa-font-path: "lib/fontawesome/webfonts"
+@import "lib/fontawesome/scss/fontawesome"
+@import "lib/fontawesome/scss/solid.scss"
+@import "lib/fontawesome/scss/regular.scss"
 
 
 $header_height: 3rem
@@ -24,6 +32,9 @@ body
   //border: 1px solid orange
   background: white
 
+p
+  @include fndtn.breakpoint(small only)
+    font-size: 90%
 
 div#body-lining
   text-align: left
@@ -36,22 +47,38 @@ div#site-title-cell
     //border: 1px solid green
     display: inline-block
     text-align: right
-    margin: 0.6667rem 0 0
+    margin: 0.8rem 0 0
     h1
-      font-size: 1rem
       margin: 0
       padding: 0
+      font-size: 2rem
+      line-height: 0
     h1 > span
       color: scale-color($trans_pink, $lightness: 99%)
       background-color: black
       border: solid black
       border-width: 1px 0.9rem
       display: inline-block
-      line-height: 1
-      font-size: 2rem
       &:nth-child(1)
         font-weight: bold
-        font-size: 4rem
+
+      color: scale-color(red, $lightness: 80%)
+      line-height: 1
+      font-size: 1.1rem
+      &:nth-child(1)
+        font-size: 1.4rem
+
+      @include fndtn.breakpoint(medium)
+        color: scale-color(green, $lightness: 80%)
+        font-size: 1.4rem
+        &:nth-child(1)
+          font-size: 2.4rem
+
+      @include fndtn.breakpoint(large)
+        color: scale-color(blue, $lightness: 80%)
+        font-size: 2rem
+        &:nth-child(1)
+          font-size: 3.6rem
 
 //.grid-x
 //  border: 1px solid pink
@@ -94,11 +121,9 @@ div#top-stuff
     font-family: fndtn.$header-font-family
     font-weight: bold
     font-size: 120%
-  #page-title h1
-    margin-bottom: 0
-
-#page-title h1
-  line-height: 0.98
+  #page-title h1,
+  #page-section p
+    margin-bottom: 0.2rem
 
 #ada-portrait
   width: 11rem
@@ -146,3 +171,7 @@ div#top-stuff
       background-color: $pride_blue
     :nth-child(6)
       background-color: $pride_purple
+
+ 
+.kill-orphans
+  white-space: nowrap

@@ -1,15 +1,21 @@
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+//const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
 
-const dev_debug_port = 9000,
-  dev_prod_port = 9001;
-
+const ASSET_PATH = process.env.ASSET_PATH || '/static/',
+  dev_debug_port = 9000,
+  dev_prod_port  = 9001;
+  
 
 module.exports = env => {
+
+  // Default to production
+  if (!env) {
+    env = { debug: false };
+  }
 
   // Use e.g. `webpack --env (debug|prod)[,[no]minify][,(clean|dirty)]`,
   // or everything will just default to clean, minified production mode.
@@ -19,15 +25,13 @@ module.exports = env => {
     suffix = min ? '.min' : '',
     entry_points = {};
 
-
-  console.log('env is ', env);
   console.log("Building in " + mode + " mode (" +
     (clean ? '' : 'no-') + 'clean, ' +
     (min ? '' : 'no-') + 'minify)...');
 
   // Entry points go here
   entry_points['base' + suffix] = [
-  //  //'jquery',
+    //  //'jquery',
     './src/js/base.js'
   ];
   //entry_points['loader' + suffix] = {
@@ -63,8 +67,6 @@ module.exports = env => {
           format: {
             semicolons: false,
             max_line_len: 110,
-          },
-          output: {
             comments: (mode == "production" && min) ? false : true,
           },
           mangle: (min ? true : false),
@@ -95,10 +97,13 @@ module.exports = env => {
       contentBase: path.join(__dirname, '/static'),
       watchContentBase: true,
       watchOptions: { poll: true },
-      publicPath: '/static/',
+      publicPath: ASSET_PATH,
     },
     devtool: false,
     plugins: [
+      new webpack.DefinePlugin({
+        'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),
+      }),
       //new webpack.ProvidePlugin({
       //  $: "jquery",
       //  jQuery: "jquery"
@@ -107,13 +112,14 @@ module.exports = env => {
         filename: 'maps/[file].map',
         sourceRoot: 'lib',
       }),
-      new MiniCssExtractPlugin({
-        filename: 'css/[name].css',
-      }),
+      //new MiniCssExtractPlugin({
+      //  filename: 'css/[name].css',
+      //}),
       new HtmlWebpackPlugin({
         template: 'src/templates/gallery.html',
         filename: 'index' + (mode != "production" ? '-debug' : '') + '.html',
         minify: (min ? true : false),
+        inject: 'head',
         //scriptLoading: 'defer',
       }),
       new HtmlWebpackPlugin({
@@ -169,8 +175,8 @@ module.exports = env => {
         // Sass
         { test: /\.s[ac]ss$/,
           use: [
-            { loader: MiniCssExtractPlugin.loader },
-            //{ loader: 'style-loader', options: {} },
+            //{ loader: MiniCssExtractPlugin.loader },
+            { loader: 'style-loader', options: {} },
             { loader: 'css-loader',
               options: {
                 sourceMap: true,
@@ -207,6 +213,16 @@ module.exports = env => {
               }
             },
           ],
+        },
+        { test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+          use: [
+            { loader: 'file-loader',
+              options: {
+                name: '[name].[ext]',
+                outputPath: 'fonts/'
+              }
+            }
+          ]
         },
       ],
     },
