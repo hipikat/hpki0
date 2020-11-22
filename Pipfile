@@ -15,10 +15,10 @@ coverage = "*"
 flake8 = "*"
 ipython = "*"
 ipdb = "*"
+yolk3k = "*"
 
 [packages]
 django-decouple = "*"
-
 # Base Django CMS requirements
 Django = "<3.1"
 django-cms = "3.7.4"
@@ -40,7 +40,6 @@ html5lib = "1.0.1"
 Pillow = "*"
 pytz = "*"
 six = "*"
-
 # Original freeze after `djangocms install`
 # on 2020-09-20 ___________________________
 #
@@ -77,5 +76,6 @@ six = "*"
 #six = "1.15.0"
 #sqlparse = "0.3.1"
 #tzlocal = "2.1"
+psycopg2-binary = "*"
 #Unidecode = "1.1.1"
 #webencodings = "0.5.1"
