@@ -1,11 +1,12 @@
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-//const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
 
-const ASSET_PATH = process.env.ASSET_PATH || '/static/',
+const ASSET_PATH = process.env.ASSET_PATH || '/var/build/',
   dev_debug_port = 9000,
   dev_prod_port  = 9001;
   
@@ -19,6 +20,9 @@ module.exports = env => {
 
   // Use e.g. `webpack --env (debug|prod)[,[no]minify][,(clean|dirty)]`,
   // or everything will just default to clean, minified production mode.
+  //
+  // - Map files are always created
+  // - Clean/dirty refers to stripping comments and console.log()ging
   const mode = env.debug ? "debug" : "production",
     min = (mode == "production" || env.minify) ? (env.nominify ? false : true) : false,
     clean = (mode == "production" || env.clean) ? (env.dirty ? false : true) : false,
@@ -31,13 +35,8 @@ module.exports = env => {
 
   // Entry points go here
   entry_points['base' + suffix] = [
-    //  //'jquery',
     './src/js/base.js'
   ];
-  //entry_points['loader' + suffix] = {
-  //  import: path.join(__dirname, '/src/js/loader.js'),
-  //  dependOn: 'common' + suffix,
-  //}
   entry_points['main' + suffix] = {
     "import": path.join(__dirname, '/src/js/main.js'),
     filename: 'js/main' + suffix + '.js',
@@ -72,6 +71,9 @@ module.exports = env => {
           mangle: (min ? true : false),
         },
       }),
+      new CssMinimizerPlugin({
+        sourceMap: true,
+      }),
     ]
   }
 
@@ -84,7 +86,7 @@ module.exports = env => {
     },
     entry: entry_points,
     output: {
-      path: path.resolve(__dirname, 'static'),
+      path: path.resolve(__dirname, 'var/build'),
       filename: 'js/[name].js',
       chunkFilename: 'js/[id].chunk' + suffix + '.js',
     },
@@ -94,7 +96,7 @@ module.exports = env => {
     },
     devServer: {
       port: (mode == "production" ? dev_prod_port : dev_debug_port),
-      contentBase: path.join(__dirname, '/static'),
+      contentBase: path.join(__dirname, '/var/build'),
       watchContentBase: true,
       watchOptions: { poll: true },
       publicPath: ASSET_PATH,
@@ -112,11 +114,11 @@ module.exports = env => {
         filename: 'maps/[file].map',
         sourceRoot: 'lib',
       }),
-      //new MiniCssExtractPlugin({
-      //  filename: 'css/[name].css',
-      //}),
+      new MiniCssExtractPlugin({
+        filename: 'css/[name].css',
+      }),
       new HtmlWebpackPlugin({
-        template: 'src/templates/gallery.html',
+        template: 'src/templates/regular_page.html',
         filename: 'index' + (mode != "production" ? '-debug' : '') + '.html',
         minify: (min ? true : false),
         inject: 'head',
@@ -127,14 +129,16 @@ module.exports = env => {
         filename: 'html/foundation/index.html',
       }),
       new CopyPlugin({
-        patterns: [{
-          from: 'src/templates/static',
-        }],
+        patterns: [
+          { from: 'src/templates/static', },
+          { from: 'src/images', to: 'images' },
+        ],
       }),
     ],
     module: {
       rules: [
-        // JS
+
+        // JavaScript
         { test: /.js[x]$/,
           exclude: /(node_modules)/,
           use: {
@@ -151,6 +155,7 @@ module.exports = env => {
             }
           }
         },
+
         //{ test: /.js$/,
         //  exclude: /(node_modules)/,
         //  use: {
@@ -172,11 +177,15 @@ module.exports = env => {
         //    }
         //  }
         //},
+
         // Sass
         { test: /\.s[ac]ss$/,
           use: [
-            //{ loader: MiniCssExtractPlugin.loader },
-            { loader: 'style-loader', options: {} },
+            { loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: '/static/',
+              }
+            },
             { loader: 'css-loader',
               options: {
                 sourceMap: true,
@@ -207,13 +216,15 @@ module.exports = env => {
                   includePaths: [
                     path.resolve(__dirname, 'lib/foundation'),
                     path.resolve(__dirname, 'lib/motion-ui'),
-                    path.resolve(__dirname, "src/scss"),
+                    path.resolve(__dirname, "src/sass"),
                   ]
                 }
               }
             },
           ],
         },
+
+        // Fonts and svgs
         { test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
           use: [
             { loader: 'file-loader',

@@ -12,7 +12,7 @@ window.global_timer = {
 global_timer.log("Initialised global_timer at " + global_timer.origin);
 
 // Import styles and scripts
-import '../scss/styles.sass';
+import '../sass/styles.sass';
 
 import $ from 'jquery';
 import { Foundation } from './base.js';

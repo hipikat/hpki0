@@ -1,3 +1,14 @@
+
+// Canonical pride flag colours
+$trans-pink: #f7a8b8;
+$trans-blue: #55cdfc;
+$pride-red: #ff0018;
+$pride-orange: #ffa52c;
+$pride-yellow: #ffff41;
+$pride-green: #008018;
+$pride-blue: #0000f9;
+$pride-purple: #86007d;
+
 //  Foundation for Sites Settings
 //  -----------------------------
 //
@@ -78,10 +89,11 @@ $global-lineheight: 1.5;
 //);
 //$light-gray: #e6e6e6;
 $medium-gray: #aaaaaa;
-//$dark-gray: #8a8a8a;
-//$black: #0a0a0a;
-//$white: #fefefe;
-//$body-background: $white;
+$dark-gray: mix(#444444, $trans-blue, $weight: 50%);
+$black: #0b0b0b;
+$white: #ffffff;
+//$body-background: #fcfcfc;
+$body-background: #ffffff;
 $body-font-color: #121212;
 //$body-font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 //$body-antialiased: true;
@@ -106,13 +118,14 @@ $global-menu-padding: 0.9rem 1rem;
 // 2. Breakpoints
 // --------------
 
-//$breakpoints: (
-//  small: 0,
-//  medium: 640px,
-//  large: 1024px,
+$breakpoints: (
+  small: 0,
+  smallish: 540px,
+  medium: 640px,
+  large: 1024px,
 //  xlarge: 1200px,
 //  xxlarge: 1440px,
-//);
+);
 //$breakpoints-hidpi: (
 //  hidpi-1: 1,
 //  hidpi-1-5: 1.5,
@@ -174,7 +187,7 @@ $header-styles: (
 );
 //$header-text-rendering: optimizeLegibility;
 //$small-font-size: 80%;
-$header-small-font-color: $medium-gray;
+$header-small-font-color: $dark-gray;
 //$paragraph-lineheight: 1.6;
 //$paragraph-margin-bottom: 1rem;
 //$paragraph-text-rendering: optimizeLegibility;

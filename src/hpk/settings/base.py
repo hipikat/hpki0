@@ -1,5 +1,6 @@
 import os  # isort:skip
 gettext = lambda s: s
+#from django.utils.translation import gettext as _
 DATA_DIR = os.path.dirname(os.path.dirname(__file__))
 """
 Django settings for hpk project.
@@ -19,6 +20,8 @@ from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SRC_DIR = os.path.dirname(BASE_DIR)
+PROJECT_DIR = os.path.dirname(SRC_DIR)
 
 
 # Quick-start development settings - unsuitable for production
@@ -31,6 +34,10 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = []
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -89,12 +96,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
-STATIC_ROOT = os.path.join(DATA_DIR, 'static')
+MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'hpk', 'static'),
+    os.path.join(PROJECT_DIR, 'var/build'),
 )
 SITE_ID = 1
 
@@ -102,7 +109,9 @@ SITE_ID = 1
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'hpk', 'templates'),],
+        'DIRS': [
+            os.path.join(SRC_DIR, 'templates/cms'),
+        ],
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
@@ -127,6 +136,7 @@ TEMPLATES = [
 
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'cms.middleware.utils.ApphookReloadMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -181,7 +191,8 @@ INSTALLED_APPS = [
     'djangocms_snippet',
     'djangocms_googlemap',
     'djangocms_video',
-    'hpk'
+    'hpk',
+    'debug_toolbar',
 ]
 
 LANGUAGES = (
@@ -207,9 +218,11 @@ CMS_LANGUAGES = {
     },
 }
 
+#CMS_TEMPLATES_DIR = os.path.join(SRC_DIR, 'templates/cms/')
+
 CMS_TEMPLATES = (
-    ## Customize this
-    ('default.html', 'Default'),
+    # Customize this
+    ('default.html', gettext('Default')),
 )
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'

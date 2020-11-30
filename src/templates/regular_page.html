@@ -8,26 +8,14 @@
 
     <title>Style gallery - Hpk.io</title>
 
-    <!--<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab+Highlight:wght@400;700&display=swap" rel="stylesheet">-->
     <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300;600&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   </head>
   <body><div id="body-lining">
 
-    <!--
-    <div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
-      <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
-      <div class="title-bar-title">Menu</div>
-    </div>
-    -->
-    <!--
-    <div id="background-left" class="grid-container full">
-      <p>nothing should go here.</p>
-    </div>
-    -->
-
     <header>
+
     <div id="page-header" class="grid-container full">
       <div class="grid-x">
 
@@ -43,14 +31,14 @@
         </div>
 
         <!-- #top-stuff -->
-        <div class="cell small-10 medium-9 grid-padding-x flex-dir-column" id="top-stuff">
+        <div id="top-stuff" class="cell small-10 medium-9 grid-padding-x flex-dir-column">
 
           <!--<div class="cell"><span class="understated">category:</span> development practices</div>-->
           <div class="cell"><span class="badge primary"><i class="fas fa-at"></i></span> by Ada Wright</div>
           <div class="cell"><span class="understated"><span class="badge primary"><i class="fas fa-tags"></i></span> </span>salt, web development, Python, Ubuntu</div>
           <div class="cell">Published/last updated
             <i class="far fa-calendar-alt"></i>
-              <span class="ISO-8601"><span class="date">2020-11-22</span><span class="a_t">T</span><span class="time">08:42:21</span><span class="zone">+0000</span></span>
+              <span class="iso-8601"><span class="date">2020-11-22</span><span class="a-t">T</span><span class="time">08:42:21</span><span class="zone">+0000</span></span>
             <span class="time-ago"><i class="far fa-clock"></i> 117 days ago</span>
           </div>
 
@@ -62,13 +50,16 @@
     <main>
 
     <div id="title-container" class="grid-container full">
-      <div class="grid-x align-center grid-padding-x">
+      <div class="grid-x align-left">
 
-        <div id="page-section" class="cell small-1 medium-2 grid-x align-bottom align-right">
-          <!--<div id="title-section" class="grid-x" class="align-right">
-            <div class="cell small-12">-->
+        <div id="page-section" class="cell small-2 medium-3 align-right">
+
+          <div class="grid-x align-right align-bottom">
+            <div class="cell align-bottom small-9 text-right">
               <p>blog</p>
-          <!--</div>-->
+            </div>
+          </div>
+
         </div>
 
         <div id="page-title" class="cell small-9 medium-8">
@@ -83,7 +74,7 @@
         <div class="cell small-2 medium-3 align-center text-center">
 
           <!-- human mask -->
-          <img id="ada-portrait" src="../src/images/ada-portrait.png" />
+          <img id="ada-portrait" src="/static/images/ada-portrait-fs8.png" alt="Selfie of Ada under an umbrella" />
 
         </div>
         <div class="cell small-10 medium-7 large-6">
@@ -126,5 +117,5 @@
     </footer>
 
 
-  </div><!--end #body-lining--></body>
+  </div></body>
 </html>
