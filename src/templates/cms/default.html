@@ -2,7 +2,7 @@
 {% load cms_tags menu_tags sekizai_tags static %}
 {# load cms_tags sekizai_tags static menu_tags cache i18n #}
 
-{% block content %}
+{% block header %}
   <header>
 
   <div id="page-header" class="grid-container full">
@@ -40,6 +40,9 @@
   </div>
 
   </header>
+{% endblock header %}
+
+{% block content %}
   <main>
 
   <div id="title-container" class="grid-container full">
@@ -63,14 +66,18 @@
   </div>
 
   <div id="body-container" class="grid-container full">
-    <div class="grid-x grid-padding-x grid-padding-y">
+    <div id="body-sidebar" class="grid-x grid-padding-x grid-padding-y">
       <div class="cell small-2 medium-3 align-center text-center">
 
         <!-- human mask -->
         <img id="ada-portrait" src="/static/images/ada-portrait-fs8.png" alt="Selfie of Ada under an umbrella" />
 
       </div>
-      <div class="cell small-10 medium-7 large-6">
+      <div id="body-copy" class="cell small-10 medium-9">
+
+        {% placeholder "content" %}
+
+        <pre>{% filter force_escape %}{% debug %}{% endfilter %}</pre>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu pharetra est, vitae ultricies nisi. Phasellus in nisi turpis. Praesent mattis mi vel mauris tempus, at cursus lorem porta. Etiam ac auctor elit, nec tristique elit. Integer congue porttitor auctor. Cras facilisis massa quis dui hendrerit vehicula. Nulla lacinia vehicula elit, eu sodales mi vehicula quis.</p>
         <p>Quisque a dapibus leo. Praesent ut dui aliquet, fringilla lorem eu, venenatis lectus. Suspendisse dapibus eu mi at mollis. Morbi suscipit pellentesque erat vulputate facilisis. Sed justo nunc, aliquam et dui non, laoreet dapibus turpis. Nullam tempus justo vitae dui tristique mollis. Ut suscipit egestas lectus, vitae mollis nibh feugiat vitae.</p>
@@ -83,6 +90,9 @@
   </div>
 
   </main>
+{% endblock content %}
+
+{% block footer %}
   <footer>
 
   <div id="pride-stripe" class="grid-container full">
@@ -97,5 +107,5 @@
   </div>
 
   </footer>
-{% endblock %}
+{% endblock footer %}
 

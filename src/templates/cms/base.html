@@ -1,5 +1,4 @@
-{% load cms_tags menu_tags sekizai_tags static %}
-{# load cms_tags ssekizai_tags static menu_tags i18n #}
+{% load cms_tags menu_tags sekizai_tags static i18n %}
 <!doctype html>
 <html class="no-js" lang="{{ LANGUAGE_CODE }}">
 
@@ -13,10 +12,11 @@
     <meta name="keywords" content="{% page_attribute "meta_keywords" %}" />
     {% endblock meta_tags %}
 
-    <title>{% block title %}{% page_attribute page_title %}{% if site_settings.site.name %} | {{ site_settings.site.name }}{% endif %}{% endblock title %}</title>
+    <title>{% block title %}{% page_attribute "page_title" %}{% if site_settings.site.name %}
+      | {{ site_settings.site.name }}{% endif %}{% endblock title %}</title>
 
-    <script src="/static/js/base.js"></script>
-    <script src="/static/js/main.js"></script>
+    <script src="/static/js/base.min.js"></script>
+    <script src="/static/js/main.min.js"></script>
 
     <!-- todo: only show this when the admin mode is on -->
     <style type="text/css">
@@ -29,15 +29,22 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300;600&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- todo: only w/ admin -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
 
-    <link href="/static/css/main.css" rel="stylesheet">
     {% render_block "css" %}
+    <link href="/static/css/main.css" rel="stylesheet">
 
-  </head><body><div id="body-lining">
+  </head>
+  <body><div id="body-lining">
     {% cms_toolbar %}
 
-    {% block content %}[content]{% endblock content %}
+    {% block header %}{% endblock %}
+
+    {% block content %}{% placeholder "content" %}{% endblock %}
+
+    {% block footer %}{% endblock %}
 
     </div><!--end #body-lining -->
     <!-- todo: only show this when the admin mode is on -->

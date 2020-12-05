@@ -1,4 +1,6 @@
 
+import $ from 'jquery';
+
 import { Foundation } from 'foundation-sites/js/foundation.core';
 import * as CoreUtils from 'foundation-sites/js/foundation.core.utils';
 
@@ -33,7 +35,7 @@ import { Sticky } from 'foundation-sites/js/foundation.sticky';
 import { Tooltip } from 'foundation-sites/js/foundation.tooltip';
 //import { ResponsiveAccordionTabs } from 'foundation-sites/js/foundation.responsiveAccordionTabs';
 
-Foundation.addToJquery($);
+//Foundation.addToJquery($);
 
 // Add Foundation Utils to Foundation global namespace for backwards
 // compatibility.

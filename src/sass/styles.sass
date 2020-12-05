@@ -35,6 +35,33 @@ $sidebar-pink-cornice: scale-color($trans-pink, $lightness: 98%)
 $sidebar-pink-end: desaturate(darken(scale-color($trans-pink,  $lightness: 70%), 13%), 50%)
 
 
+
+/* Django-CMS */
+.main.shifted > #nav-sidebar
+    padding-top: 72px
+
+#nav-sidebar .current-app .section:link,
+#nav-sidebar .current-app .section:visited
+    color: #666
+
+div.cms .cms-sideframe-history
+  .cms-icon-arrow-forward
+    padding: 8px 6px 8px 4px
+  .cms-icon
+    padding: 8px 4px 8px 10px
+
+.cms-admin-sideframe.cms-debug
+  #container
+    .breadcrumbs
+      padding-left: 309px !important
+
+
+/* Django Debug Toolbar */
+body #djDebug #djDebugToolbarHandle
+  top: 20px
+
+
+/* Main stuff; late in the cascade */
 html
   height: 100%
 
@@ -154,6 +181,10 @@ p
   .grid-x
     padding-bottom: 4px
     min-height: 100vh
+
+#body-copy
+  p
+    margin-right: 33%
 
 #pride-stripe
   position: fixed

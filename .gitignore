@@ -8,7 +8,7 @@ node_modules
 */coverage
 
 # production
-*/build
+var/build*
 var/pgdumps/*
 static/*
 
@@ -22,3 +22,8 @@ static/*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# contrivances
+etc/Pipfile
+etc/dj-*.py
+etc/package.json

@@ -6,7 +6,9 @@ const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
 
-const ASSET_PATH = process.env.ASSET_PATH || '/var/build/',
+const ASSET_PATH = process.env.ASSET_PATH || 'var/build-webpack',
+  STATIC_PATH = process.env.STATIC_PATH || '/static',
+  PROJECT_PATH = path.join(__dirname, '..'),
   dev_debug_port = 9000,
   dev_prod_port  = 9001;
   
@@ -21,8 +23,10 @@ module.exports = env => {
   // Use e.g. `webpack --env (debug|prod)[,[no]minify][,(clean|dirty)]`,
   // or everything will just default to clean, minified production mode.
   //
-  // - Map files are always created
+  // - `debug` defaults to `nominify` and `dirty`
+  // - `prod` defaults to `minify` and `clean`
   // - Clean/dirty refers to stripping comments and console.log()ging
+  // - Map files are always created
   const mode = env.debug ? "debug" : "production",
     min = (mode == "production" || env.minify) ? (env.nominify ? false : true) : false,
     clean = (mode == "production" || env.clean) ? (env.dirty ? false : true) : false,
@@ -38,7 +42,7 @@ module.exports = env => {
     './src/js/base.js'
   ];
   entry_points['main' + suffix] = {
-    "import": path.join(__dirname, '/src/js/main.js'),
+    "import": path.join(PROJECT_PATH, 'src/js/main.js'),
     filename: 'js/main' + suffix + '.js',
     dependOn: 'base' + suffix,
   };
@@ -81,12 +85,13 @@ module.exports = env => {
   return {
     target: "web",
     mode: (mode == "production" ? "production" : "development"),
-    externals: {
-      jquery: 'jQuery',
-    },
+	//context: path.resolve(__dirname, '..'),
+    //externals: {
+    //  jquery: 'jQuery',
+    //},
     entry: entry_points,
     output: {
-      path: path.resolve(__dirname, 'var/build'),
+      path: path.resolve(PROJECT_PATH, ASSET_PATH),
       filename: 'js/[name].js',
       chunkFilename: 'js/[id].chunk' + suffix + '.js',
     },
@@ -96,10 +101,11 @@ module.exports = env => {
     },
     devServer: {
       port: (mode == "production" ? dev_prod_port : dev_debug_port),
-      contentBase: path.join(__dirname, '/var/build'),
+      contentBase: path.join(PROJECT_PATH, ASSET_PATH),
       watchContentBase: true,
       watchOptions: { poll: true },
-      publicPath: ASSET_PATH,
+      //contentBasePublicPath: STATIC_PATH
+      publicPath: '/' + STATIC_PATH + '/',
     },
     devtool: false,
     plugins: [
@@ -183,7 +189,7 @@ module.exports = env => {
           use: [
             { loader: MiniCssExtractPlugin.loader,
               options: {
-                publicPath: '/static/',
+                publicPath: STATIC_PATH + '/',
               }
             },
             { loader: 'css-loader',
@@ -214,9 +220,9 @@ module.exports = env => {
                 sourceMap: true,
                 sassOptions: {
                   includePaths: [
-                    path.resolve(__dirname, 'lib/foundation'),
-                    path.resolve(__dirname, 'lib/motion-ui'),
-                    path.resolve(__dirname, "src/sass"),
+                    path.resolve(PROJECT_PATH, 'lib/foundation'),
+                    path.resolve(PROJECT_PATH, 'lib/motion-ui'),
+                    path.resolve(PROJECT_PATH, "src/sass"),
                   ]
                 }
               }
