@@ -65,19 +65,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -Rf static/* && rm -Rf var/build/*",
-
     "webpack": "webpack",
     "webpack-debug": "webpack --env debug",
     "watch:webpack": "webpack --watch",
     "watch:webpack-debug": "webpack --env debug --watch",
-
     "collectstatic": "rm -Rf static/* && pipenv run manage collectstatic",
     "watch:collectstatic": "chokidar 'var/build/**/*.*' --debounce 1200 -c 'npm run collectstatic'",
-
     "watch:debug": "concurrently --names '🐛>build,🥚>>dist' --prefix-colors 'blue,green' 'npm run watch:webpack-debug' 'npm run watch:collectstatic'",
     "watch:prod": "concurrently --names '🦋>build,🥚>>dist' --prefix-colors 'cyan,green' 'npm run watch:webpack' 'npm run watch:collectstatic'",
     "watch": "concurrently --names '🐛>build,>🦋build,🥚>>dist' --prefix-colors 'blue,cyan,green' 'npm run watch:webpack-debug' 'npm run watch:webpack' 'npm run watch:collectstatic'",
-
     "build:debug": "run-s webpack-debug collectstatic",
     "build:prod": "run-s webpack collectstatic",
     "build:both": "run-p webpack webpack-debug",
@@ -85,7 +81,6 @@
     "clean:debug": "run-s clean build:debug collectstatic",
     "clean:prod": "run-s clean build:prod collectstatic",
     "clean:build": "run-s clean build:both collectstatic",
-
     "lint:sass": "sass-lint -v",
     "lint": "lint-sass",
     "watch:lint": "chokidar 'src/sass/**/*.sass' 'src/sass/**/*.scss' -c 'npm run lint'",
