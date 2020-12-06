@@ -1,6 +1,6 @@
 # The Simplified BSD License (BSD-2-Clause)
 
-Copyright © 2020, Ada Wright <ada@hpk.io>\
+Copyright © 2020, Ada Wright \<<ada@hpk.io>\>\
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
