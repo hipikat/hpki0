@@ -62,6 +62,13 @@
     "webpack-cli": "^4.2.0"
   },
   "scripts": {
+    "init:py": "pipenv install --python `pyenv which python`",
+    "init:node": "npm install --save-prod",
+    "init:py:dev": "pipenv install --dev --python `pyenv which python`",
+    "init:node:dev": "npm install --save-prod --save-dev",
+    "init": "pipenv install --python `pyenv which python` & PIDPY=$! ; npm install --save-prod & PIDNPM=$! ; wait $PIDPY ; wait $PIDNPM",
+    "init:dev": "pipenv install --dev --python `pyenv which python` && npm install --save-prod --save-dev",
+    "teardown": "rm -Rf $(pipenv --venv) && rm -Rf ./node_modules && echo 'Removed virtual environment and node_modules'",
     "git+lock": "git add Pipfile.lock package-lock.json",
     "git-lock": "git reset Pipfile.lock package-lock.json",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -90,7 +97,7 @@
     "lint": "lint-sass",
     "watch:lint": "chokidar 'src/sass/**/*.sass' 'src/sass/**/*.scss' -c 'npm run lint'",
     "develop": "concurrently --handle-input --names '🌏server,🐛>build,🦋>build,🥚static' --prefix-colors 'blue,cyan,green,gray' 'pipenv run server' 'npm run watch:webpack:debug' 'npm run watch:webpack' 'npm run watch:collectstatic'",
-	"develop-": "concurrently --names '🐛>build,🦋>build,🥚static' --prefix-colors 'blue,cyan,green' 'npm run watch:webpack:debug' 'npm run watch:webpack' 'npm run watch:collectstatic'",
+    "develop-": "concurrently --names '🐛>build,🦋>build,🥚static' --prefix-colors 'blue,cyan,green' 'npm run watch:webpack:debug' 'npm run watch:webpack' 'npm run watch:collectstatic'",
     "server": "pipenv run server",
     "server+": "pipenv run server_plus",
     "server+view": "pipenv run server_debug_view",
