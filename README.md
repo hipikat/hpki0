@@ -1,7 +1,7 @@
 # Ada's little website
 
 This repo was made by Ada Wright, to host their personal website at
-<https://hpk.io>...
+<https://hpk.io/>...
 
 It's built with [Django CMS](https://django-cms.org/) on the backend,
 [Zurb Foundation](https://get.foundation) on the frontend, and uses
@@ -49,3 +49,6 @@ Create a database (named in [.env](./.env)), and get Django to initialise it:
 
     ~/code/hpk.io § createdb hpkio
     ~/code/hpk.io § pipenv run manage migrate
+    Loading .env environment variables...
+    Operations to perform:
+        Apply all migrations: admin, auth, bootstrap4_alerts, [...]
