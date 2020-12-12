@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d8aa9fe55769146c2eb30bc1706dbc1b2c464ef3e0860bdc77fe0eef00fcce30"
+            "sha256": "c2e494cdde5c510cb6747294ac6d51bdc11cfd263f8f9372f8a2ddc381b4e223"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -350,6 +350,14 @@
             ],
             "version": "==0.2.0"
         },
+        "click": {
+            "hashes": [
+                "sha256:d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a",
+                "sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc"
+            ],
+            "index": "pypi",
+            "version": "==7.1.2"
+        },
         "coverage": {
             "hashes": [
                 "sha256:0203acd33d2298e19b57451ebb0bed0ab0c602e5cf5a818591b4918b1f97d516",
@@ -420,6 +428,13 @@
             ],
             "index": "pypi",
             "version": "==3.1.0"
+        },
+        "django-pdb": {
+            "hashes": [
+                "sha256:eb8f4ed1a7f2b9c67944414688fd39a6f38f410dd7461d417512d72359f0472d"
+            ],
+            "index": "pypi",
+            "version": "==0.6.2"
         },
         "flake8": {
             "hashes": [
@@ -522,11 +537,11 @@
         },
         "pygments": {
             "hashes": [
-                "sha256:381985fcc551eb9d37c52088a32914e00517e57f4a21609f48141ba08e193fa0",
-                "sha256:88a0bbcd659fcb9573703957c6b9cff9fab7295e6e76db54c9d00ae42df32773"
+                "sha256:ccf3acacf3782cbed4a989426012f1c535c9a90d3a7fc3f16d231b9372d2b716",
+                "sha256:f275b6c0909e5dafd2d6269a656aa90fa58ebf4a74f8fcf9053195d226b24a08"
             ],
             "markers": "python_version >= '3.5'",
-            "version": "==2.7.2"
+            "version": "==2.7.3"
         },
         "pytz": {
             "hashes": [
