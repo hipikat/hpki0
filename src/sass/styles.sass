@@ -156,17 +156,24 @@ p
       margin-top: auto
       border-bottom: 1px solid darken($trans-blue, 20%)
       padding-left: 0
-    p
+    p,
+    span.p
+      display: inline-block
       margin-bottom: 0.2rem
       vertical-align: bottom
       font-family: $header-font-family
-      font-size: 100%
+      font-size: 1rem
       font-weight: bold
+      line-height: 1.7
       @include breakpoint(medium)
-        font-size: 120%
+        font-size: 1.2rem
+      @include breakpoint(large)
+        font-size: 1.4rem
   #page-title
     @include xy-gutters($gutters: $grid-padding-gutters, $gutter-type: padding)
     border-bottom: 1px solid darken($trans-blue, 20%)
+    h1
+      margin-bottom: 0.2rem
 
 #ada-portrait
   width: 11rem

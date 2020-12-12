@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-{% load cms_tags menu_tags sekizai_tags static %}
-{# load cms_tags sekizai_tags static menu_tags cache i18n #}
+{% load cms_tags menu_tags sekizai_tags static cache i18n debugger_tags %}
 
 {% block header %}
   <header>
@@ -52,14 +51,15 @@
 
         <div class="grid-x align-right align-bottom">
           <div class="cell align-bottom small-9 text-right">
-            <p>blog</p>
+            <span class="p">{% placeholder "page_section_label" or %}[page_section]{% endplaceholder %}</span>
           </div>
         </div>
 
       </div>
 
       <div id="page-title" class="cell small-9 medium-8">
-        <h1><small>Development practices:</small><br>Rolling web servers <span class="kill-orphans">with Salt</span></h1>
+        <h1><small>{% placeholder "series_label" or %}[series label]{% endplaceholder %}</small><br>
+          {% page_attribute "page_title" %}, <span class="kill-orphans">with Salt</span></h1>
       </div>
 
     </div>
@@ -76,7 +76,7 @@
       <div id="body-copy" class="cell small-10 medium-9">
 
         {% placeholder "content" %}
-
+        {{ request|pdb }}
         <pre>{% filter force_escape %}{% debug %}{% endfilter %}</pre>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu pharetra est, vitae ultricies nisi. Phasellus in nisi turpis. Praesent mattis mi vel mauris tempus, at cursus lorem porta. Etiam ac auctor elit, nec tristique elit. Integer congue porttitor auctor. Cras facilisis massa quis dui hendrerit vehicula. Nulla lacinia vehicula elit, eu sodales mi vehicula quis.</p>

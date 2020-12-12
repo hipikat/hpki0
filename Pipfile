@@ -25,6 +25,8 @@ pyyaml = "*"
 django-debug-toolbar = "*"
 werkzeug = "*"
 django-extensions = "*"
+django-pdb = "*"
+click = "*"
 
 [packages]
 psycopg2-binary = "*"
