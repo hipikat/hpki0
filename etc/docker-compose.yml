@@ -1,0 +1,30 @@
+version: "3.9"
+   
+services:
+  web:
+    dockerfile: etc/Dockerfile.web
+    container_name: hpk-web
+    build: .
+    working_dir: /app
+    command: ["python" "manage.py" "runserver" "0.0.0.0:8000"]
+    volumes:
+      - var:/app/var
+    #  - .:/code
+    #  - type: volume
+    #    source: web_data
+    #    target: /app/var
+    #    volume: 
+    #      nocopy: true
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+volumes:
+  - web_data: 

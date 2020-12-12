@@ -73,6 +73,7 @@
     "git-lock": "git reset Pipfile.lock package-lock.json",
     "test": "echo \"Error: no test specified\" && exit 1",
     "freeze": "pipenv run pip freeze > etc/requirements.txt",
+    "docker:build": "docker build -f etc/Dockerfile",
     "clean:static": "rm -Rf static/*",
     "clean:build:webpack": "rm -Rf var/build-webpack/*",
     "clean": "run-p clean:static clean:build:webpack",
