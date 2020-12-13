@@ -8,7 +8,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from os import path, getenv
+from os import path, getenv, environ
 import sys
 
 from decouple import config
@@ -56,13 +56,12 @@ DATABASES = {
         'CONN_MAX_AGE': 0,
         'ENGINE': 'django.db.backends.postgresql',
         'USER': config('POSTGRES_USERNAME'),
-        'PASSWORD': config('POSTGRES_PASSWORD'),
+        'PASSWORD': environ.get('USERNAME'),
         'HOST': config('POSTGRES_HOST'),
         'PORT': config('POSTGRES_PORT', '5432'),
         'NAME': config('POSTGRES_DATABASE_NAME'),
     }
 }
-
 
 
 # Password validation

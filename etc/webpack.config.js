@@ -220,8 +220,9 @@ module.exports = env => {
                 sourceMap: true,
                 sassOptions: {
                   includePaths: [
-                    path.resolve(PROJECT_PATH, 'lib/foundation'),
-                    path.resolve(PROJECT_PATH, 'lib/motion-ui'),
+                    path.resolve(PROJECT_PATH, 'src/sass/lib/foundation'),
+                    path.resolve(PROJECT_PATH, 'src/sass/lib/motion-ui'),
+                    path.resolve(PROJECT_PATH, 'src/sass/lib/_vendor'),
                     path.resolve(PROJECT_PATH, "src/sass"),
                   ]
                 }
