@@ -84,7 +84,7 @@ RUN echo "SECRET_KEY=$(python3 scripts/generate_secret_key.py)" >> etc/env.prod 
 # Build static files
 COPY src/ src/
 RUN npm run webpack
-#RUN ./.venv/bin/python src/manage.py collectstatic --no-input
+RUN .venv/bin/python src/manage.py collectstatic --no-input
 
 
 
@@ -105,6 +105,7 @@ FROM hpk-web-base AS hpk-web-stage
 ENV PYTHONUNBUFFERED=FALSE
 
 # Install virtualenv for production
+COPY Pipfile.lock ./
 RUN pipenv install --deploy
 
 # Copy project files
