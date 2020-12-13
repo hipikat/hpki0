@@ -47,14 +47,14 @@ psycopg2-binary==2.8.6
 ptyprocess==0.6.0
 pycodestyle==2.6.0
 pyflakes==2.2.0
-Pygments==2.7.2
+Pygments==2.7.3
 pytz==2020.4
 PyYAML==5.3.1
 six==1.15.0
 sqlparse==0.4.1
 traitlets==5.0.5
 Unidecode==1.1.1
+uWSGI==2.0.19.1
 wcwidth==0.2.5
 webencodings==0.5.1
 Werkzeug==1.0.1
-yolk3k==0.9

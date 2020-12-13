@@ -4,7 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [requires]
-python_full_version = "3.9.0"
+python_full_version = "3.9.1"
 
 [scripts]
 manage = "python src/manage.py"
@@ -14,6 +14,7 @@ server_plus = "python src/manage.py runserver_plus hpkio.local:8098"
 server_debug_view = "python src/manage.py runserver_plus --pdb hpkio.local:8097"
 server_debug_except = "python src/manage.py runserver_plus --pm hpkio.local:8096"
 dumpdata = "python src/manage.py dumpdata --format yaml --indent 2 --natural-primary --natural-foreign --exclude sessions --exclude auth.user --output ./fixtures/latest.yaml"
+collectstatic = "python src/manage.py collectstatic --no-input"
 
 [dev-packages]
 coverage = "*"
@@ -33,7 +34,8 @@ psycopg2-binary = "*"
 django-decouple = "*"
 # Base Django CMS requirements
 Django = "<=3.1.3"
-django-cms = "3.7.4"
+#django-cms = "3.8.0"
+django-cms = "*"
 django-filer = ">=1.3"
 django-treebeard = "<5.0"
 djangocms-admin-style = "<1.6"
@@ -48,10 +50,11 @@ djangocms-file = "<2.5"
 djangocms-picture = "<2.5"
 djangocms-bootstrap4 = "<1.7"
 easy_thumbnails = "*"
-html5lib = "1.0.1"
+html5lib = "*"
 Pillow = "*"
 pytz = "*"
 six = "*"
+uwsgi = "*"
 #
 # Original freeze after `djangocms install`
 # on 2020-09-20 ___________________________
