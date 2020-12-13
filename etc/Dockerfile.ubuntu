@@ -113,7 +113,7 @@ COPY etc/env.* etc/*.config.* etc/*-lint.* etc/
 COPY scripts/ scripts/
 
 # Copy static files built by the build image
-COPY --from=hpk-web-build /srv/static ./
+COPY --from=hpk-web-build /srv/static ./static
 
 # Copy source code in (do not mount; this is staging)
 COPY src/ src/
