@@ -59,10 +59,9 @@ FROM hpk-web-base AS hpk-web-build
 # Install Node, and dev system-packages, and clean up after apt
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get install -y \
-        screen \
-        python3.8-dev \
-        libpython3.8-dev \
         nodejs \
+        libpython3.8-dev python3.8-dev \
+        git screen zsh sudo \
         && rm -rf /var/lib/apt/lists/*
 
 # Install Python dev packages
@@ -72,6 +71,14 @@ RUN pipenv install --dev
 # Set up the Node environment
 COPY .node-version package.json package-lock.json .babelrc ./
 RUN npm install --save-prod --save-dev
+
+# Install "oh-my-zsh" for a useable prompt
+RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+COPY etc/oh-my.zshrc ./
+RUN echo "unsafe-perm = true" > ~/.npmrc \
+    npm install --global pure-prompt
+    #mkdir /root/.npm && \
+    #sudo chown -R 65534:0 "/root/.npm" && \
 
 # Copy project files
 COPY etc/env.* etc/*.config.* etc/*-lint.* etc/
