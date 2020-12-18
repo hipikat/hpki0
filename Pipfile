@@ -29,6 +29,7 @@ django-pdb = "*"
 click = "*"
 
 [packages]
+pdjn = {editable = true, path = "./src/cli"}
 psycopg2-binary = "*"
 django-decouple = "*"
 # Base Django CMS requirements

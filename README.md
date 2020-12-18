@@ -15,16 +15,15 @@ System software requirements:
 * [Docker](https://www.docker.com)
 * [PostgreSQL](https://www.postgresql.org)
 
-First ensure you have the correct versions of Python and Node installed. I
+Ensure you have the correct versions of Python and Node installed - I
 recommend using [Pyenv](https://github.com/pyenv/pyenv) and
-[Nodenv](https://github.com/nodenv/nodenv). This guide also assumes you're
+[Nodenv](https://github.com/nodenv/nodenv) to manage multiple installs
+of each. I'd also suggest
 using [Pipenv](https://docs.pipenv.org) to manage your Python virtual
 environments.
 
-The desired Node version is in
-[.node-version](./.node-version), and [Pipfile](./Pipfile) lists the desired
-Python version under `python_full_version`. You can explicitly pass `pipenv`
-a path to the correct Python binary with the `--python` argument.
+> $ nodenv install $(cat .node-version)
+> $ pyenv install $(cat Pipfile | grep version | cut -d'"' -f 2)
 
 Get the source, and create a virtualenv with all the Python dependencies installed:
 

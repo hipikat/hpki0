@@ -111,7 +111,8 @@
     "server": "pipenv run server",
     "server+": "pipenv run server_plus",
     "server+view": "pipenv run server_debug_view",
-    "server+except": "pipenv run server_debug_except"
+    "server+except": "pipenv run server_debug_except",
+    "getenv:npm": "node -e 'console.log(process.env)' | grep npm"
   },
   "sasslintConfig": "./etc/sass-lint.yml"
 }
