@@ -12,7 +12,8 @@ def cli():
 
 
 @click.command()
-@click.option('--dev', default=False, help="Install developer dependencies")
+@click.option('--rebuild', default=False, help="Install developer dependencies")
+@click.argument('environment', default="prod", envvar="MYSITE_DJANGO_ENVIRONMENT")
 def init():
     if dev:     # noqa: F821
         echo("Setting up production environment...")
