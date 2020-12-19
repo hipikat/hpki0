@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('series_part_index', models.PositiveSmallIntegerField()),
                 ('series_part_label', models.CharField(max_length=64)),
                 ('extended_object', models.OneToOneField(editable=False, on_delete=django.db.models.deletion.CASCADE, to='cms.page')),
-                ('public_extension', models.OneToOneField(editable=False, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='draft_extension', to='hpk.seriesextension')),
+                ('public_extension', models.OneToOneField(editable=False, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='draft_extension', to='hpkio.seriesextension')),
             ],
             options={
                 'abstract': False,

@@ -1,18 +1,32 @@
 #
-# Welcome to the Dockerfile for hpk.io
+# This is the Ubuntu-based Dockerfile for hpk.io
 #
-# hpk-web-base sets the basic environment and builds the basic system,
-# on top of Ubuntu
+# hpk-web-base images set the basic environment and installs the baseline
+# Python virtualenv, on top of Ubuntu.
 #
-# hpk-base-build ...
+# hpk-web-build extends hpk-web-base, and is used in the build pipeline.
+# It installs the Node environment, developer dependencies, and a friendlier
+# propt, before running the asset build pipeline.
 #
+# hpk-web-debug extends hpk-web-build, and enables debug flags across the
+# project, so that it can be used as a development container.
+#
+# hpk-web-stage extends hpk-web-base, and is used for staging. It sets up
+# the project with production settings, and copies built static files from
+# hpk-web-build. Node is NOT installed by design, so `npm` calls won't work
+# in staging containers.
+#
+# TODO: hpk-web-boxed extends hpk-web-base, creating a single 'fully deployed'
+# image which replicates a completed deployment to a single machine,
+# including the database and web server.
+####
 
 #######################################
 # Base image for the web container for hpk.io
 FROM ubuntu:focal AS hpk-web-base
 
 LABEL version="0.1.0"
-LABEL Description="Django app for hpk.io"
+LABEL Description="Web app for hpk.io"
 LABEL maintainer="Ada Wright <ada@hpk.io>"
 
 ENV LANG en_AU.UTF-8
@@ -124,3 +138,15 @@ COPY --from=hpk-web-build /srv/static ./static
 
 # Copy source code in (do not mount; this is staging)
 COPY src/ src/
+
+
+
+#######################################
+# BOXED (production-like image for a single-machine deploy)
+FROM hpk-web-stage AS hpk-web-boxed
+
+# Install a web server and database, and clean up after apt
+RUN apt-get install -y \
+        nginx \
+        && rm -rf /var/lib/apt/lists/*
+

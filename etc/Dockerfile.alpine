@@ -1,9 +1,9 @@
-#######################################
-# Base image for the web container for hpk.io
+# This is the Alpine-based Dockerfile for hpk.io
+
 FROM alpine:3.12.2 AS hpk-web-base
 
 LABEL version="0.1.0"
-LABEL Description="Django app for hpk.io"
+LABEL Description="Web app for hpk.io"
 LABEL maintainer="Ada Wright <ada@hpk.io>"
 
 ENV LANG en_AU.UTF-8

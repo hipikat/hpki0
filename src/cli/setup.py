@@ -1,4 +1,4 @@
-"""pdjn - CLI tool developed for hpk.io"""
+"""pdjn - the CLI tool of Pdjn"""
 
 from setuptools import setup
 
@@ -7,7 +7,7 @@ setup(
     name='pdjn',
     version='0.1',
     description="CLI tool for managing Pydjn sites",
-    url='https://github.com/hipikat/hpk.io/src/cli',
+    url='https://github.com/hipikat/hpk.io/tree/master/src/cli',
     license='ISC',
     author='Ada Wright',
     author_email='ada@hpk.io',

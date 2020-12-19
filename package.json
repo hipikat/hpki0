@@ -1,24 +1,20 @@
 {
-  "name": "hpkio",
-  "version": "1.0.0",
+  "name": "hpk",
+  "version": "0.1.0",
   "description": "Ada's little website",
   "author": {
     "name": "Ada Wright",
     "email": "ada@hpk.io",
     "url": "https://hpk.io/"
   },
-  "license": "ISC",
+  "license": "BSD 2-clause",
   "homepage": "https://github.com/hipikat/hpk.io#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hipikat/hpk.io.git"
+    "url": "https://github.com/hipikat/hpk.io"
   },
   "bugs": {
     "url": "https://github.com/hipikat/hpk.io/issues"
-  },
-  "main": "./src/js/hpk.js",
-  "bin": {
-    "hpk": "./src/cli.js"
   },
   "config": {
     "port": 8000
