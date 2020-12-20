@@ -14,7 +14,7 @@ def cli():
 @click.command()
 @click.option('--rebuild', default=False, help="Teardown virtualenv and node_modules first")
 @click.option('--dev/--prod', default=False, help="Install developer packages")
-@click.argument('environment', default="prod", envvar="MYSITE_DJANGO_ENVIRONMENT")
+@click.argument('environment', default="prod", envvar="HPKIO_DJANGO_ENVIRONMENT")
 def init():
     if dev:     # noqa: F821
         echo("Setting up production environment...")
