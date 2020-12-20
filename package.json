@@ -16,9 +16,6 @@
   "bugs": {
     "url": "https://github.com/hipikat/hpk.io/issues"
   },
-  "config": {
-    "port": 8000
-  },
   "private": true,
   "dependencies": {
     "jquery": "^3.5.1",
