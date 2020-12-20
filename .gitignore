@@ -5,6 +5,7 @@ secrets.*
 
 # Dependencies
 node_modules
+lib/
 /.pnp
 .pnp.js
 .env
