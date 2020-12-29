@@ -18,9 +18,12 @@ lib/
 pyproject.toml
 
 # Production
-var/build*
-var/pgdumps/*
 static/*
+
+# Transient
+var/build*
+var/cookiecutter*
+var/pgdumps/*
 
 # Logs
 npm-debug.log*

@@ -27,6 +27,7 @@ werkzeug = "*"
 django-extensions = "*"
 django-pdb = "*"
 click = "*"
+cookiecutter = "*"
 
 [packages]
 pdjn = {editable = true, path = "./src/cli/"}
