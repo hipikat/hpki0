@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ce3dbc71e5e13efdb2e0ca0bbfa73931de4c6cd548558020e431eb2a883bcf1c"
+            "sha256": "2057bab02ec710a89f1c17cabf77999448df403ae177d2f81337f50b9cb204ec"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -214,7 +214,7 @@
         },
         "pdjn": {
             "editable": true,
-            "path": "./src/cli"
+            "path": "./cli"
         },
         "pillow": {
             "hashes": [
