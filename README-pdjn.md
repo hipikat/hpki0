@@ -36,7 +36,7 @@ virtualenv (with Pyenv), and installs all the Python and Node dependencies
 (from [Pipfile](Pipfile) and [package.json](package.json)).
 
 ```
-../hpk-master § npm run init
+../hpk § npm run init
 [...]
 Installing dependencies from Pipfile.lock (b48720)...
   🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 61/61 — 00:00:47
@@ -47,7 +47,7 @@ To activate this project's virtualenv, run pipenv shell.
 
 found 1 low severity vulnerability
   run `npm audit fix` to fix them, or `npm audit` for details
-../hpk-master §
+../hpk §
 ```
 
 Inside your virtualenv, `pdjn` is the command-line tool you use

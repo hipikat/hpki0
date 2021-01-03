@@ -21,7 +21,8 @@ base:
     #- system.packages
     - users
     - homeboy
-   #- nginx
+    - nginx
+    - postgres
     #- letsencrypt
     #- postgres
     #
