@@ -1,0 +1,30 @@
+# Managed applications
+src/picata
+
+# Regular stuff that should be ignored
+*.egg-info/
+.env
+__pycache__
+package-lock.json
+
+# Building
+
+# Logs
+npm-debug.log*
+
+# System
+var
+
+# Tools and libraries and junk
+node_modules
+*.tfstate*
+.terraform
+terraform.tfvars
+.vagrant
+.coverage
+
+# Transient/system files
+*.swp
+*.log
+.DS_Store
+junk
