@@ -5,8 +5,8 @@
 
 [build-system]
 requires = [
-  "hatchling",
-  "versioningit",
+  "hatchling",    # https://hatch.pypa.io/config/build/
+  "versioningit", # https://versioningit.readthedocs.io/en/stable/
 ]
 build-backend = "hatchling.build"
 
@@ -18,7 +18,7 @@ readme = "README.md"
 requires-python = ">=3.12.2"
 license = "MIT"
 keywords = []
-authors = [{ name = "Ada Wright", email = "ada@hpk.io" },]
+authors = [{ name = "Ada Wright", email = "ada@hpk.io" }]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Programming Language :: Python",
@@ -44,11 +44,7 @@ parallel = true
 tests = ["tests", "*/picata/tests"]
 
 [tool.coverage.report]
-exclude_lines = [
-  "no cov",
-  "if __name__ == .__main__.:",
-  "if TYPE_CHECKING:",
-]
+exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
 
 #
 # Poetry - https://python-poetry.org/
@@ -74,47 +70,32 @@ version.source = "versioningit"
 
 # Environment: Default
 [tool.hatch.envs.default]
-dependencies = [
-  "coverage[toml]>=6.5",
-  "pytest",
-]
+dependencies = ["coverage[toml]>=6.5", "pytest"]
 
 [tool.hatch.envs.default.scripts]
 test = "pytest {args:tests}"
 test-cov = "coverage run -m pytest {args:tests}"
-cov-report = [
-  "- coverage combine",
-  "coverage report",
-]
-cov = [
-  "test-cov",
-  "cov-report",
-]
+cov-report = ["- coverage combine", "coverage report"]
+cov = ["test-cov", "cov-report"]
 
 # Environment: Test
 [tool.hatch.envs.test]
-dependencies = [
-  "coverage[toml]",
-  "pytest",
-  "pytest-cov",
-]
+dependencies = ["coverage[toml]", "pytest", "pytest-cov"]
 
 [tool.hatch.envs.test.scripts]
 cov = 'pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=pkg --cov=tests'
 
 # Environment: Types
 [tool.hatch.envs.types]
-dependencies = [
-  "mypy>=1.0.0",
-]
+dependencies = ["mypy>=1.0.0"]
 [tool.hatch.envs.types.scripts]
 check = "mypy --install-types --non-interactive {args:src/eyrie tests}"
 
 # Environment matrix
 # https://hatch.pypa.io/1.9/config/environment/advanced/#matrix
 [[tool.hatch.envs.all.matrix]]
-python = ["3.12",]
-wagtail = ["6.0",]
+python = ["3.12"]
+wagtail = ["6.0"]
 
 #
 # versioningit - https://versioningit.readthedocs.io/
