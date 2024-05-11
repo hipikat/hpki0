@@ -1,3 +1,10 @@
+
+*.swo
+*.py~
+*__pycache__*
+
+
+
 # Patterns for git to ignore...
 #
 # Secrets
@@ -8,7 +15,6 @@ node_modules
 lib/
 /.pnp
 .pnp.js
-.env
 
 # Testing
 */coverage
@@ -16,6 +22,7 @@ lib/
 # Build
 *.egg-info/
 pyproject.toml
+.env
 
 # Production
 static/*
@@ -32,7 +39,33 @@ yarn-error.log*
 
 # Misc
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# Managed applications
+src/picata
+
+# Lockfiles
+package-lock.json
+
+# Building
+*.egg-info/
+.env
+
+# Logs
+npm-debug.log*
+
+# System
+var
+
+# Tools and libraries and junk
+node_modules
+*.tfstate*
+.terraform
+terraform.tfvars
+.vagrant
+.coverage
+
+# Transient/system files
+*.log
+*.swp
+*.tmp
+.DS_Store
+junk

@@ -7,12 +7,14 @@ verify_ssl = true
 python_full_version = "3.8.5"
 
 [scripts]
+setadmin = "printf \"from django.contrib.admin import get_user_model as gum\nUser = gum()\ntry:\n    User.objects.create_superuser('admin', 'ada@hpk.io', '${PASSWORD}')\nexcept IntegrityError:\n    User.objects.get(username='admin').set_password('${PASSWORD}')\" | python src/manage.py shell"
 manage = "python src/manage.py"
 python = "python"
 server = "python src/manage.py runserver hpkio.local:8071"
 server_plus = "python src/manage.py runserver_plus hpkio.local:8072"
 server_debug_view = "python src/manage.py runserver_plus --pdb hpkio.local:8073"
 server_debug_except = "python src/manage.py runserver_plus --pm hpkio.local:8074"
+shell = "python src/manage.py shell"
 dumpdata = "python src/manage.py dumpdata --format yaml --indent 2 --natural-primary --natural-foreign --exclude sessions --exclude auth.user --output ./fixtures/latest.yaml"
 collectstatic = "python src/manage.py collectstatic --no-input"
 
