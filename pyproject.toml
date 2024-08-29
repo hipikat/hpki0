@@ -48,3 +48,24 @@ tests = ["tests", "*/picata/tests"]
 
 [tool.coverage.report]
 exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
+
+#
+# versioningit - https://versioningit.readthedocs.io/
+#
+[tool.versioningit.format]
+# When there have been commits since the most recent tag:
+distance = "{version}.dev{distance}+{vcs}{rev}"
+# When there are uncommitted changes:
+dirty = "{version}+dirty"
+# When there are both commits and uncommitted changes:
+distance-dirty = "{version}.dev{distance}+{vcs}{rev}.dirty"
+
+[tool.versioningit.vcs]
+method      = "git"
+match       = ["v*"]
+default-tag = "v0.0.0"
+
+[tool.versioningit.tag2version]
+method        = "basic"
+regex         = "^v(\\d+\\.\\d+\\.\\d+)(?:-([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?(?:\\+([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?$"
+require-match = true
